@@ -9,6 +9,7 @@ type Context struct {
 	W http.ResponseWriter
 	Request *http.Request
 	Session *sessions.CookieStore
+	Config map[string]string
 	Debug bool
 }
 

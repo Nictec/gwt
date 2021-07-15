@@ -18,6 +18,7 @@ type Server struct{
 	Middleware []negroni.Handler
 	SecretKey string
 	Session *sessions.CookieStore
+	Config map[string]string
 	Debug bool
 }
 
@@ -33,6 +34,8 @@ func (s *Server) contextHandler(next handler.Handler) http.HandlerFunc {
 			Session: s.Session,
 			Debug:   s.Debug,
 		}
+		ctx.Config = s.Config
+
 		next(ctx)
 	}
 	return fn
