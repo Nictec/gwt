@@ -11,23 +11,23 @@ import (
 	"net/http"
 )
 
-type Server struct{
-	Name string
-	Host string
-	Urls []urls.Path
+type Server struct {
+	Name       string
+	Host       string
+	Urls       []urls.Path
 	Middleware []negroni.Handler
-	SecretKey string
-	Session *sessions.CookieStore
-	Config map[string]string
-	Debug bool
+	SecretKey  string
+	Session    *sessions.CookieStore
+	Config     map[string]interface{}
+	Debug      bool
 }
 
 func NewServer(name string, host string, urls []urls.Path, secretKey string, debug bool) Server {
-	return Server{Name: name,Host: host, Urls: urls, SecretKey: secretKey, Debug: debug}
+	return Server{Name: name, Host: host, Urls: urls, SecretKey: secretKey, Debug: debug}
 }
 
 func (s *Server) contextHandler(next handler.Handler) http.HandlerFunc {
-	fn := func(w http.ResponseWriter, r *http.Request){
+	fn := func(w http.ResponseWriter, r *http.Request) {
 		ctx := handler.Context{
 			W:       w,
 			Request: r,
@@ -41,10 +41,10 @@ func (s *Server) contextHandler(next handler.Handler) http.HandlerFunc {
 	return fn
 }
 
-func (s *Server) Run() error{
+func (s *Server) Run() error {
 	// set up the router
 	router := mux.NewRouter()
-	for _, route := range s.Urls{
+	for _, route := range s.Urls {
 		router.HandleFunc(route.Path, s.contextHandler(route.Handler))
 	}
 
@@ -59,7 +59,7 @@ func (s *Server) Run() error{
 
 	//set up middleware
 	n := negroni.Classic()
-	for _, mw := range s.Middleware{
+	for _, mw := range s.Middleware {
 		n.Use(mw)
 	}
 	n.UseHandler(CSRF(router))
