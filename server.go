@@ -18,7 +18,7 @@ type Server struct {
 	Middleware []negroni.Handler
 	SecretKey  string
 	Session    *sessions.CookieStore
-	Config     map[string]interface{}
+	Config     map[string]string
 	Debug      bool
 }
 
