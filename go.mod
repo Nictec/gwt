@@ -1,4 +1,4 @@
-module nictec.net/gwt
+module github.com/Nictec/gwt
 
 go 1.16
 
