@@ -23,7 +23,9 @@ type Server struct {
 }
 
 func NewServer(name string, host string, urls []urls.Path, secretKey string, debug bool) Server {
-	return Server{Name: name, Host: host, Urls: urls, SecretKey: secretKey, Debug: debug}
+	// set up session
+	session := sessions.NewCookieStore([]byte(s.SecretKey))
+	return Server{Name: name, Host: host, Urls: urls, SecretKey: secretKey, Debug: debug, Session: session}
 }
 
 func (s *Server) contextHandler(next handler.Handler) http.HandlerFunc {
@@ -50,9 +52,6 @@ func (s *Server) Run() error {
 
 	// csrf protection
 	CSRF := csrf.Protect([]byte(s.SecretKey))
-
-	// set up session
-	s.Session = sessions.NewCookieStore([]byte(s.SecretKey))
 
 	//set up logging
 	logger.Init()
