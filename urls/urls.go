@@ -1,7 +1,7 @@
 package urls
 
 import (
-	"nictec.net/gwt/handler"
+	"github.com/Nictec/gwt/handler"
 )
 
 type Path struct {

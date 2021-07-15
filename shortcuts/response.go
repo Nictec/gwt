@@ -2,9 +2,9 @@ package shortcuts
 
 import (
 	"encoding/json"
+	"github.com/Nictec/gwt/handler"
+	"github.com/Nictec/gwt/logger"
 	"github.com/flosch/pongo2/v4"
-	"nictec.net/gwt/handler"
-	"nictec.net/gwt/logger"
 )
 
 func Render(ctx handler.Context, file string, pongoCtx pongo2.Context){

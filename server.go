@@ -1,14 +1,14 @@
 package gwt
 
 import (
+	"github.com/Nictec/gwt/handler"
+	"github.com/Nictec/gwt/logger"
+	"github.com/Nictec/gwt/urls"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 	"github.com/urfave/negroni"
 	"net/http"
-	"nictec.net/gwt/handler"
-	"nictec.net/gwt/logger"
-	"nictec.net/gwt/urls"
 )
 
 type Server struct{
