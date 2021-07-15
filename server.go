@@ -24,7 +24,7 @@ type Server struct {
 
 func NewServer(name string, host string, urls []urls.Path, secretKey string, debug bool) Server {
 	// set up session
-	session := sessions.NewCookieStore([]byte(s.SecretKey))
+	session := sessions.NewCookieStore([]byte(secretKey))
 	return Server{Name: name, Host: host, Urls: urls, SecretKey: secretKey, Debug: debug, Session: session}
 }
 
