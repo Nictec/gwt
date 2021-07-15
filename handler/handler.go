@@ -6,11 +6,11 @@ import (
 )
 
 type Context struct {
-	W http.ResponseWriter
+	W       http.ResponseWriter
 	Request *http.Request
 	Session *sessions.CookieStore
-	Config map[string]string
-	Debug bool
+	Config  map[string]interface{}
+	Debug   bool
 }
 
 type Handler func(ctx Context)
